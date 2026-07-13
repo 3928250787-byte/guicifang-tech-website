@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>案例 | 常州硅次方科技</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--bg:#f8f9fc;--bg-card:#fff;--primary:#2563eb;--primary-light:#3b82f6;--primary-dark:#1d4ed8;--secondary:#059669;--text:#1e293b;--text-secondary:#475569;--text-muted:#94a3b8;--border:#e2e8f0;--radius:12px}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--primary);border-radius:3px}
+
+    header{position:fixed;top:0;width:100%;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;height:64px}
+    .logo{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700;text-decoration:none;color:var(--text)}
+    .logo .logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff}
+    nav{display:flex;gap:4px;align-items:center}
+    nav a{color:var(--text-secondary);text-decoration:none;font-size:14px;padding:8px 18px;border-radius:8px;transition:all .25s}
+    nav a:hover{color:var(--primary);background:rgba(37,99,235,.06)}
+    nav a.active{color:var(--primary);font-weight:600}
+    .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+    .nav-toggle span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+
+    .page-banner{margin-top:64px;padding:80px 20px 50px;background:linear-gradient(135deg,#f8f9fc 0%,#eef2ff 100%);text-align:center}
+    .page-banner h1{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;margin-bottom:8px}
+    .page-banner p{color:var(--text-secondary);font-size:14.5px}
+
+    section{padding:60px 20px}
+    section:nth-child(even){background:#fff}
+    .container{max-width:900px;margin:0 auto}
+
+    .case-list{display:grid;gap:28px}
+    .case-item{background:var(--bg-card);border-radius:var(--radius);padding:36px;border:1px solid var(--border);transition:all .3s}
+    .case-item:hover{box-shadow:0 8px 24px rgba(0,0,0,.06);border-color:var(--secondary)}
+    .case-item .c-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:12px}
+    .case-item .c-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+    .case-item .c-icon.blue{background:rgba(37,99,235,.1)}
+    .case-item .c-icon.green{background:rgba(5,150,105,.1)}
+    .case-item .c-icon.purple{background:rgba(124,58,237,.1)}
+    .case-item .tag{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:500;margin-bottom:8px;background:rgba(5,150,105,.08);color:var(--secondary)}
+    .case-item h3{font-size:17px;margin-bottom:6px}
+    .case-item .c-desc{color:var(--text-secondary);font-size:14px;line-height:1.8;margin-bottom:12px}
+    .case-item .c-result{display:flex;flex-wrap:wrap;gap:12px}
+    .case-item .c-result span{padding:6px 14px;border-radius:8px;font-size:13px;background:rgba(37,99,235,.06);color:var(--primary);font-weight:500}
+
+    .cta-box{text-align:center;background:linear-gradient(135deg,var(--bg) 0%,#eef2ff 100%);border-radius:20px;padding:50px 40px;border:1px solid var(--border);margin-top:40px}
+    .cta-box h3{font-size:1.3rem;margin-bottom:8px}
+    .cta-box p{color:var(--text-secondary);margin-bottom:20px}
+    .btn{padding:13px 30px;border-radius:10px;font-size:14.5px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(37,99,235,.25);transition:all .25s}
+    .btn:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:0 4px 16px rgba(37,99,235,.3)}
+
+    footer{text-align:center;padding:32px 20px;border-top:1px solid var(--border);color:var(--text-muted);font-size:13px;background:#fff}
+    footer .slogan{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:768px){
+      nav{display:none;position:fixed;top:64px;left:0;width:100%;flex-direction:column;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);padding:16px;border-bottom:1px solid var(--border)}
+      nav.open{display:flex}.nav-toggle{display:flex}
+      .case-item{padding:24px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">Si</span>硅次方科技</a>
+    <nav id="mainNav">
+      <a href="index.html">首页</a>
+      <a href="about.html">关于我们</a>
+      <a href="services.html">服务</a>
+      <a href="cases.html" class="active">案例</a>
+      <a href="contact.html">联系</a>
+    </nav>
+    <div class="nav-toggle" onclick="toggleNav()"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<div class="page-banner">
+  <h1>案例展示</h1>
+  <p>用实力说话，用结果证明</p>
+</div>
+
+<section>
+  <div class="container">
+    <div class="case-list">
+      <div class="case-item reveal" style="transition-delay:.05s">
+        <span class="tag">智能制造</span>
+        <div class="c-header">
+          <div class="c-icon blue">🏭</div>
+          <div>
+            <h3>AI 视觉质检系统</h3>
+          </div>
+        </div>
+        <p class="c-desc">为某制造企业打造基于深度学习的视觉质检系统，通过部署工业相机与 AI 模型，实现产品表面缺陷的自动检测与分类。系统支持实时检测、数据追溯与报表生成，大幅降低人工质检成本。</p>
+        <div class="c-result">
+          <span>准确率 99.2%</span>
+          <span>效率提升 8x</span>
+          <span>缺陷种类 20+</span>
+          <span>7×24h 自动运行</span>
+        </div>
+      </div>
+
+      <div class="case-item reveal" style="transition-delay:.1s">
+        <span class="tag">智慧零售</span>
+        <div class="c-header">
+          <div class="c-icon green">🏪</div>
+          <div>
+            <h3>智能客户分析平台</h3>
+          </div>
+        </div>
+        <p class="c-desc">为连锁零售品牌构建客户画像与智能推荐系统。整合多渠道消费数据，利用机器学习模型进行用户分层、消费预测与精准推荐，帮助品牌实现精细化运营与销售增长。</p>
+        <div class="c-result">
+          <span>转化率提升 35%</span>
+          <span>客单价增长 22%</span>
+          <span>用户画像覆盖率 90%</span>
+        </div>
+      </div>
+
+      <div class="case-item reveal" style="transition-delay:.15s">
+        <span class="tag">智能客服</span>
+        <div class="c-header">
+          <div class="c-icon purple">💬</div>
+          <div>
+            <h3>企业级 AI 知识助手</h3>
+          </div>
+        </div>
+        <p class="c-desc">基于大语言模型为企业打造内部知识库问答系统。将企业分散的文档、制度、流程等知识资产整合为统一的知识库，支持员工自然语言提问，实现秒级检索与智能回复。</p>
+        <div class="c-result">
+          <span>响应效率提升 60%</span>
+          <span>知识库容量 10万+ 文档</span>
+          <span>人工客服减负 40%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-box reveal">
+      <h3>想了解更多成功案例？</h3>
+      <p>联系我们，获取适合您行业的 AI 解决方案。</p>
+      <a href="contact.html" class="btn">立即咨询 →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="slogan">让智能触手可及</div>
+  <p>© 2026 常州硅次方科技有限公司 · All Rights Reserved</p>
+</footer>
+
+<script>
+function toggleNav(){document.getElementById('mainNav').classList.toggle('open')}
+const observer=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&e.target.classList.add('visible')})},{threshold:.15})
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))
+</script>
+</body>
+</html>

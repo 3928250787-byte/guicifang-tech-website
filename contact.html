@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联系我们 | 常州硅次方科技</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--bg:#f8f9fc;--bg-card:#fff;--primary:#2563eb;--primary-light:#3b82f6;--primary-dark:#1d4ed8;--secondary:#059669;--text:#1e293b;--text-secondary:#475569;--text-muted:#94a3b8;--border:#e2e8f0;--radius:12px}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--primary);border-radius:3px}
+
+    header{position:fixed;top:0;width:100%;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;height:64px}
+    .logo{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700;text-decoration:none;color:var(--text)}
+    .logo .logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff}
+    nav{display:flex;gap:4px;align-items:center}
+    nav a{color:var(--text-secondary);text-decoration:none;font-size:14px;padding:8px 18px;border-radius:8px;transition:all .25s}
+    nav a:hover{color:var(--primary);background:rgba(37,99,235,.06)}
+    nav a.active{color:var(--primary);font-weight:600}
+    .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+    .nav-toggle span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+
+    .page-banner{margin-top:64px;padding:80px 20px 50px;background:linear-gradient(135deg,#f8f9fc 0%,#eef2ff 100%);text-align:center}
+    .page-banner h1{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;margin-bottom:8px}
+    .page-banner p{color:var(--text-secondary);font-size:14.5px}
+
+    section{padding:60px 20px;background:#fff}
+    .container{max-width:900px;margin:0 auto}
+
+    .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+    .contact-info-list{display:flex;flex-direction:column;gap:16px}
+    .contact-item{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:10px;background:var(--bg);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:14px;transition:all .25s}
+    .contact-item:hover{border-color:var(--primary);background:var(--bg-card-hover, #f0f2f8)}
+    .contact-item .ci-icon{width:40px;height:40px;border-radius:10px;background:rgba(37,99,235,.08);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+    .contact-item .ci-text{flex:1}
+    .contact-item .ci-text .ci-label{font-size:12px;color:var(--text-muted)}
+    .contact-item .ci-text .ci-value{font-size:14px;color:var(--text);font-weight:500;margin-top:2px}
+    .contact-item.wechat{cursor:pointer}
+    .contact-item.wechat:hover{background:rgba(37,99,235,.06)}
+
+    .contact-form{display:flex;flex-direction:column;gap:14px;background:var(--bg-card);padding:32px;border-radius:12px;border:1px solid var(--border)}
+    .contact-form h3{font-size:17px;margin-bottom:4px}
+    .contact-form .form-sub{color:var(--text-muted);font-size:13px;margin-bottom:4px}
+    .contact-form input,.contact-form textarea{padding:12px 16px;border-radius:10px;border:1.5px solid var(--border);background:#fff;color:var(--text);font-size:14px;outline:none;transition:all .25s;font-family:inherit}
+    .contact-form input:focus,.contact-form textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+    .contact-form textarea{resize:vertical;min-height:100px}
+    .btn{padding:13px 30px;border-radius:10px;font-size:14.5px;font-weight:600;cursor:pointer;border:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(37,99,235,.25);transition:all .25s;font-family:inherit}
+    .btn:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:0 4px 16px rgba(37,99,235,.3)}
+
+    /* Team Quick Contact */
+    .team-contacts{margin-top:40px;text-align:center}
+    .team-contacts h3{font-size:1.2rem;margin-bottom:20px}
+    .team-contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+    .team-contact-card{background:var(--bg-card);border-radius:var(--radius);padding:20px 16px;border:1px solid var(--border);transition:all .3s;cursor:pointer;text-decoration:none;color:inherit;display:block}
+    .team-contact-card:hover{box-shadow:0 6px 20px rgba(0,0,0,.06);border-color:var(--primary);transform:translateY(-2px)}
+    .team-contact-card .tc-avatar{font-size:1.5rem;margin-bottom:6px}
+    .team-contact-card .tc-name{font-size:14px;font-weight:600;margin-bottom:2px}
+    .team-contact-card .tc-role{color:var(--text-muted);font-size:12px}
+    .team-contact-card .tc-wechat{color:var(--primary);font-size:13px;font-weight:500;margin-top:4px}
+
+    footer{text-align:center;padding:32px 20px;border-top:1px solid var(--border);color:var(--text-muted);font-size:13px;background:#fff}
+    footer .slogan{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:768px){
+      nav{display:none;position:fixed;top:64px;left:0;width:100%;flex-direction:column;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);padding:16px;border-bottom:1px solid var(--border)}
+      nav.open{display:flex}.nav-toggle{display:flex}
+      .contact-wrap{grid-template-columns:1fr}
+      .contact-form{padding:24px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">Si</span>硅次方科技</a>
+    <nav id="mainNav">
+      <a href="index.html">首页</a>
+      <a href="about.html">关于我们</a>
+      <a href="services.html">服务</a>
+      <a href="cases.html">案例</a>
+      <a href="contact.html" class="active">联系</a>
+    </nav>
+    <div class="nav-toggle" onclick="toggleNav()"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<div class="page-banner">
+  <h1>联系我们</h1>
+  <p>期待与您的合作</p>
+</div>
+
+<section>
+  <div class="container">
+    <div class="contact-wrap">
+      <div class="reveal-left" style="opacity:0;transform:translateX(-20px);transition:opacity .6s ease,transform .6s ease">
+        <div class="contact-info-list">
+          <div class="contact-item">
+            <div class="ci-icon">📞</div>
+            <div class="ci-text">
+              <div class="ci-label">联系电话</div>
+              <div class="ci-value">400-xxx-xxxx</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📧</div>
+            <div class="ci-text">
+              <div class="ci-label">电子邮箱</div>
+              <div class="ci-value">contact@guicifang.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📍</div>
+            <div class="ci-text">
+              <div class="ci-label">公司地址</div>
+              <div class="ci-value">江苏省常州市 xxx 产业园</div>
+            </div>
+          </div>
+          <div class="contact-item wechat" onclick="copyWechat()">
+            <div class="ci-icon">💬</div>
+            <div class="ci-text">
+              <div class="ci-label">企业微信</div>
+              <div class="ci-value">Guicifang_AI</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <form class="contact-form reveal" onsubmit="handleForm(event)">
+          <h3>在线咨询</h3>
+          <div class="form-sub">请留下您的信息，我们会尽快与您联系</div>
+          <input type="text" placeholder="您的姓名" required>
+          <input type="email" placeholder="邮箱地址" required>
+          <input type="text" placeholder="联系电话">
+          <textarea placeholder="请描述您的需求..." required></textarea>
+          <button type="submit" class="btn">发送咨询</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="team-contacts reveal">
+      <h3>直接联系创始团队</h3>
+      <p style="color:var(--text-muted);font-size:14px;margin-bottom:16px">点击微信号可直接复制</p>
+      <div class="team-contact-grid">
+        <a href="javascript:void(0)" class="team-contact-card" onclick="copyText('G3558003694','甘乾成')">
+          <div class="tc-avatar">👨‍💻</div>
+          <div class="tc-name">甘乾成</div>
+          <div class="tc-role">创始人 / CEO</div>
+          <div class="tc-wechat" style="margin-top:6px">📰 G3558003694</div>
+        </a>
+        <a href="javascript:void(0)" class="team-contact-card" onclick="copyText('djz200716','戴敬洲')">
+          <div class="tc-avatar">👨‍💻</div>
+          <div class="tc-name">戴敬洲</div>
+          <div class="tc-role">联合创始人</div>
+          <div class="tc-wechat" style="margin-top:6px">📰 djz200716</div>
+        </a>
+        <a href="javascript:void(0)" class="team-contact-card" onclick="copyText('DollarRmb_025','胡智轩')">
+          <div class="tc-avatar">👨‍💻</div>
+          <div class="tc-name">胡智轩</div>
+          <div class="tc-role">技术合伙人</div>
+          <div class="tc-wechat" style="margin-top:6px">📰 DollarRmb_025</div>
+        </a>
+        <a href="javascript:void(0)" class="team-contact-card" onclick="copyText('xy13773994461','肖宇')">
+          <div class="tc-avatar">👨‍💻</div>
+          <div class="tc-name">肖宇</div>
+          <div class="tc-role">运营合伙人</div>
+          <div class="tc-wechat" style="margin-top:6px">📰 xy13773994461</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="slogan">让智能触手可及</div>
+  <p>© 2026 常州硅次方科技有限公司 · All Rights Reserved</p>
+</footer>
+
+<script>
+function toggleNav(){document.getElementById('mainNav').classList.toggle('open')}
+const observer=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&e.target.classList.add('visible')})},{threshold:.15})
+document.querySelectorAll('.reveal,.reveal-left').forEach(el=>observer.observe(el))
+
+function handleForm(e){e.preventDefault();alert('✅ 感谢您的咨询！我们会尽快与您联系。');e.target.reset()}
+function copyWechat(){copyText('Guicifang_AI','企业微信')}
+function copyText(text,name){
+  if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert(`✅ 已复制 ${name} 的微信号：${text}`)).catch(()=>prompt(`请手动复制微信号：`,text))}
+  else{prompt(`请手动复制微信号：`,text)}
+}
+</script>
+</body>
+</html>

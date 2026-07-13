@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>服务 | 常州硅次方科技</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--bg:#f8f9fc;--bg-card:#fff;--primary:#2563eb;--primary-light:#3b82f6;--primary-dark:#1d4ed8;--secondary:#059669;--text:#1e293b;--text-secondary:#475569;--text-muted:#94a3b8;--border:#e2e8f0;--radius:12px}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--primary);border-radius:3px}
+
+    header{position:fixed;top:0;width:100%;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;height:64px}
+    .logo{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700;text-decoration:none;color:var(--text)}
+    .logo .logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff}
+    nav{display:flex;gap:4px;align-items:center}
+    nav a{color:var(--text-secondary);text-decoration:none;font-size:14px;padding:8px 18px;border-radius:8px;transition:all .25s}
+    nav a:hover{color:var(--primary);background:rgba(37,99,235,.06)}
+    nav a.active{color:var(--primary);font-weight:600}
+    .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+    .nav-toggle span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+
+    .page-banner{margin-top:64px;padding:80px 20px 50px;background:linear-gradient(135deg,#f8f9fc 0%,#eef2ff 100%);text-align:center}
+    .page-banner h1{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;margin-bottom:8px}
+    .page-banner p{color:var(--text-secondary);font-size:14.5px}
+
+    section{padding:60px 20px}
+    section:nth-child(even){background:#fff}
+    .container{max-width:900px;margin:0 auto}
+
+    .service-detail{display:grid;gap:32px}
+    .service-item{background:var(--bg-card);border-radius:var(--radius);padding:36px;border:1px solid var(--border);transition:all .3s}
+    .service-item:hover{box-shadow:0 8px 24px rgba(0,0,0,.06);border-color:var(--primary)}
+    .service-item .s-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:14px}
+    .service-item .s-icon{font-size:2.2rem;width:56px;height:56px;border-radius:12px;background:rgba(37,99,235,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .service-item .s-title h3{font-size:17px;margin-bottom:4px}
+    .service-item .s-title .s-sub{color:var(--text-muted);font-size:12.5px}
+    .service-item p{color:var(--text-secondary);font-size:14px;line-height:1.8}
+    .service-item .s-features{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+    .service-item .s-features span{display:inline-block;padding:4px 12px;border-radius:100px;font-size:12px;background:rgba(37,99,235,.06);color:var(--primary)}
+
+    .cta-box{text-align:center;background:linear-gradient(135deg,var(--bg) 0%,#eef2ff 100%);border-radius:20px;padding:50px 40px;border:1px solid var(--border);margin-top:40px}
+    .cta-box h3{font-size:1.3rem;margin-bottom:8px}
+    .cta-box p{color:var(--text-secondary);margin-bottom:20px}
+    .btn{padding:13px 30px;border-radius:10px;font-size:14.5px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(37,99,235,.25);transition:all .25s}
+    .btn:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:0 4px 16px rgba(37,99,235,.3)}
+
+    footer{text-align:center;padding:32px 20px;border-top:1px solid var(--border);color:var(--text-muted);font-size:13px;background:#fff}
+    footer .slogan{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:768px){
+      nav{display:none;position:fixed;top:64px;left:0;width:100%;flex-direction:column;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);padding:16px;border-bottom:1px solid var(--border)}
+      nav.open{display:flex}.nav-toggle{display:flex}
+      .service-item{padding:24px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">Si</span>硅次方科技</a>
+    <nav id="mainNav">
+      <a href="index.html">首页</a>
+      <a href="about.html">关于我们</a>
+      <a href="services.html" class="active">服务</a>
+      <a href="cases.html">案例</a>
+      <a href="contact.html">联系</a>
+    </nav>
+    <div class="nav-toggle" onclick="toggleNav()"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<div class="page-banner">
+  <h1>核心服务</h1>
+  <p>全栈 AI 解决方案，赋能千行百业</p>
+</div>
+
+<section>
+  <div class="container">
+    <div class="service-detail">
+      <div class="service-item reveal" style="transition-delay:.05s">
+        <div class="s-header">
+          <div class="s-icon">🤖</div>
+          <div class="s-title">
+            <h3>AI 应用开发</h3>
+            <div class="s-sub">从需求到交付，全链路 AI 应用开发服务</div>
+          </div>
+        </div>
+        <p>提供从需求分析、模型选型、训练优化到系统集成的全链路 AI 应用开发服务。覆盖计算机视觉（图像识别、目标检测、OCR）、自然语言处理（文本分类、情感分析、实体识别）、语音交互（语音识别、语音合成）等多个技术方向。</p>
+        <div class="s-features">
+          <span>计算机视觉</span><span>自然语言处理</span><span>语音交互</span><span>模型训练优化</span><span>系统集成</span>
+        </div>
+      </div>
+
+      <div class="service-item reveal" style="transition-delay:.1s">
+        <div class="s-header">
+          <div class="s-icon">📊</div>
+          <div class="s-title">
+            <h3>数据智能分析</h3>
+            <div class="s-sub">从数据中挖掘价值，赋能智能决策</div>
+          </div>
+        </div>
+        <p>基于机器学习与数据分析技术，帮助企业从海量数据中提取价值。提供智能决策支持、异常检测、用户画像构建、精准推荐系统等服务，助力企业实现数据驱动的精细化运营。</p>
+        <div class="s-features">
+          <span>智能决策</span><span>异常检测</span><span>用户画像</span><span>精准推荐</span><span>数据可视化</span>
+        </div>
+      </div>
+
+      <div class="service-item reveal" style="transition-delay:.15s">
+        <div class="s-header">
+          <div class="s-icon">⚙️</div>
+          <div class="s-title">
+            <h3>智能自动化</h3>
+            <div class="s-sub">融合 RPA 与 AI，重塑业务流程</div>
+          </div>
+        </div>
+        <p>融合 RPA（机器人流程自动化）与 AI 技术，打造智能自动化解决方案。帮助企业实现业务流程自动化，覆盖文档处理、数据录入、报表生成等场景，切实降本增效，释放人力价值。</p>
+        <div class="s-features">
+          <span>RPA 开发</span><span>文档智能处理</span><span>流程自动化</span><span>报表自动生成</span><span>人机协同</span>
+        </div>
+      </div>
+
+      <div class="service-item reveal" style="transition-delay:.2s">
+        <div class="s-header">
+          <div class="s-icon">🔮</div>
+          <div class="s-title">
+            <h3>AIGC 解决方案</h3>
+            <div class="s-sub">大模型驱动的智能内容生成</div>
+          </div>
+        </div>
+        <p>基于大语言模型和生成式 AI 技术，为企业提供智能客服、内容生成、知识库管理等 AIGC 场景化解决方案。助力企业提升服务效率，降低运营成本，打造智能化客户体验。</p>
+        <div class="s-features">
+          <span>智能客服</span><span>内容生成</span><span>知识库管理</span><span>智能问答</span><span>文档摘要</span>
+        </div>
+      </div>
+
+      <div class="service-item reveal" style="transition-delay:.25s">
+        <div class="s-header">
+          <div class="s-icon">☁️</div>
+          <div class="s-title">
+            <h3>AI 咨询与培训</h3>
+            <div class="s-sub">赋能团队，构建 AI 能力体系</div>
+          </div>
+        </div>
+        <p>提供 AI 技术路线规划、模型评估选型、团队技术培训等咨询服务。帮助企业梳理 AI 技术战略，评估技术可行性与投入产出比，建立可持续的 AI 能力体系。</p>
+        <div class="s-features">
+          <span>技术规划</span><span>方案评估</span><span>团队培训</span><span>技术选型</span><span>落地辅导</span>
+        </div>
+      </div>
+
+      <div class="service-item reveal" style="transition-delay:.3s">
+        <div class="s-header">
+          <div class="s-icon">🔌</div>
+          <div class="s-title">
+            <h3>私有化部署</h3>
+            <div class="s-sub">安全合规，数据自主可控</div>
+          </div>
+        </div>
+        <p>提供 AI 模型的私有化部署方案，保障数据安全与合规。支持本地化部署或专有云部署，满足金融、医疗、政务等高安全需求行业的特殊要求，让客户在享受 AI 能力的同时确保数据完全自主可控。</p>
+        <div class="s-features">
+          <span>私有化部署</span><span>数据安全</span><span>合规保障</span><span>本地部署</span><span>专有云</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-box reveal">
+      <h3>需要定制化 AI 方案？</h3>
+      <p>点击下方按钮，告诉我们您的需求，我们将为您提供专业的解决方案。</p>
+      <a href="contact.html" class="btn">立即咨询 →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="slogan">让智能触手可及</div>
+  <p>© 2026 常州硅次方科技有限公司 · All Rights Reserved</p>
+</footer>
+
+<script>
+function toggleNav(){document.getElementById('mainNav').classList.toggle('open')}
+const observer=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&e.target.classList.add('visible')})},{threshold:.15})
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))
+</script>
+</body>
+</html>
